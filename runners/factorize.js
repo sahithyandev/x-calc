@@ -1,4 +1,5 @@
 import { Runner } from "../models/index.js"
+import { multiply } from "../utils.js"
 import { isPrime } from "./is-prime.js"
 
 const meta = {
@@ -97,10 +98,10 @@ const factorsFromPrimePowers = (primePowers) => {
         if (isCorrectFactor) {
           // to get the actual factor's value
           // 1. apply the powers to the primeBases (done by map)
-          // 2. multiply them (done by reduce)
-          const factorValue = factorInPowers
-            .map((power, i) => primeBases[i] ** power)
-            .reduce((value, currentValue) => value * currentValue)
+          // 2. multiply them (done by multiply function)
+          const factorValue = multiply(
+            factorInPowers.map((power, i) => primeBases[i] ** power),
+          )
 
           factors.push(factorValue)
         } else {
