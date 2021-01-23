@@ -84,6 +84,8 @@ export const gcd = new Runner(
 			)
 				.map(removeFactorName)
 				.map((v) => parseInt(v))
+			if (intersectionArray.length === 0) intersectionArray.push(1)
+
 			return {
 				value: multiply(...intersectionArray),
 				valueAsPrimeFactors: intersectionArray,
