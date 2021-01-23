@@ -1,5 +1,5 @@
 - Create iSet
-	which extends Set, and add some classes
+	which extends Set, and add some extra functions
 - Write jest tests for runners
 	- check if they have a `meta` property
-- Setup eslint on github actions
+- Change modules' extensions to mjs from js.
