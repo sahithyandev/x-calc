@@ -1,4 +1,4 @@
-name: Test (ESLint)
+name: Test (Jest)
 
 on: [push, pull_request]
 
@@ -13,5 +13,5 @@ jobs:
         run: npm install
 
       - name: Run jest
-        run: npm run jest
+        run: npm run test
 
