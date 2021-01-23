@@ -24,8 +24,8 @@ Make sure to explain the what and why in a detailed way. Because nobody wants to
 
 If I think that functionality is useful and worth implementing, I will add it here. Don't worry, I will be genuine and not-rude.
 
-## When will X-Calc usable?
+## When will X-Calc become usable?
 
-If you have read this much, then I hope you are interested in using X-Calc. If so, I will make it available as soon as possible. To be honest, I didn't start working on the coding part yet, but I will, soon.
+If you have read this much, then I hope you are interested in using X-Calc. X-Calc is not yet available, I am trying to make it available soon.
 
 If you want to stay up-to-date with X-Calc's development, star this repo.
