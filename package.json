@@ -19,5 +19,12 @@
   "bugs": {
     "url": "https://github.com/sahithyandev/x-calc/issues"
   },
-  "homepage": "https://github.com/sahithyandev/x-calc#readme"
+  "homepage": "https://github.com/sahithyandev/x-calc#readme",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "jest": "^26.6.3",
+    "prettier": "^2.2.1",
+    "eslint": "^7.18.0"
+  }
 }
