@@ -9,7 +9,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Install npm modules
+        run: npm install
+
       - name: Run eslint
-        run: |
-          npm install
-          npm run lint
+        run: npm run lint
