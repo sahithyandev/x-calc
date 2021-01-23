@@ -1,5 +1,5 @@
-- Add jest, prettier, eslint
-- Delete Runner class and use normal functions.
+- Create iSet
+	which extends Set, and add some classes
 - Write jest tests for runners
-	- check if the have a `meta` property
+	- check if they have a `meta` property
 - Setup eslint on github actions
