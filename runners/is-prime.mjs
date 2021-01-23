@@ -6,7 +6,7 @@ const meta = {
 /**
  * @param {number} n
  *
- * @exports [boolean|number]
+ * @returns {[boolean|number]}
  */
 export const isPrime = (n) => {
 	if (n < 2) return [false, null]

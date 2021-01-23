@@ -10,6 +10,8 @@ const meta = {
 /**
  * @param {Set<number>} A
  * @param {Set<number>} B
+ *
+ * @returns {Set<number>}
  */
 function setIntersection(A, B) {
 	let _intersection = new Set()
@@ -24,12 +26,13 @@ function setIntersection(A, B) {
 /**
  * @typedef GCDOutputObj
  *
- * @property
+ * @property {number} value
+ * @property {number[]}	valueAsPrimeFactors
  */
 
 /**
  * @param {number[]} numbers
- * @exports number
+ * @returns {GCDOutputObj}
  */
 export const gcd = (...numbers) => {
 	if (numbers.length < 1) {

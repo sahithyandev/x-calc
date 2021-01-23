@@ -7,7 +7,14 @@ const meta = {
 }
 
 /**
+ * @typedef LCMResultObj
+ *
+ * @property {number} value
+ */
+
+/**
  * @param {number[]} numbers
+ * @returns {LCMResultObj}
  */
 export const lcm = (...numbers) => {
 	if (numbers.length === 1) throw new Error("lcm: expects atleast 2 numbers")
