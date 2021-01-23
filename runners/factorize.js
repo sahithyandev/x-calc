@@ -1,4 +1,3 @@
-import { Runner } from "../models/index.js"
 import { multiply } from "../utils.js"
 import { isPrime } from "./is-prime.mjs"
 
@@ -124,31 +123,26 @@ const factorsFromPrimePowers = (primePowers) => {
  */
 
 /**
- * @exports FactorizeOutputObj
+ * @param {number} n
+ *
+ * @returns {FactorizeOutputObj}
  */
-export const factorize = new Runner(
-	/**
-	 * @param {number} n
-	 *
-	 * @exports FactorizeOutputObj
-	 */
-	(n) => {
-		// get factors
-		if (n <= 0) return null
-		if (n === 1) return { factors: [1] }
+export const factorize = (n) => {
+	// get factors
+	if (n <= 0) return null
+	if (n === 1) return { factors: [1] }
 
-		const primeFactors = primeFactorize(n)
-		const primePowers = extractPowers(primeFactors)
-		const factors = factorsFromPrimePowers(primePowers)
+	const primeFactors = primeFactorize(n)
+	const primePowers = extractPowers(primeFactors)
+	const factors = factorsFromPrimePowers(primePowers)
 
-		return {
-			factors,
-			primeFactors,
-			primePowers,
-		}
-	},
-	meta,
-)
+	return {
+		factors,
+		primeFactors,
+		primePowers,
+	}
+}
+factorize.meta = meta
 
 // new Array(100).fill(0).map((_, _i) => {
 //   const i = _i + 1

@@ -1,4 +1,3 @@
-import { Runner } from "./../models/index.js"
 import { gcd } from "./gcd.js"
 
 const meta = {
@@ -10,7 +9,7 @@ const meta = {
 /**
  * @param {number[]} numbers
  */
-export const lcm = new Runner((...numbers) => {
+export const lcm = (...numbers) => {
 	if (numbers.length === 1) throw new Error("lcm: expects atleast 2 numbers")
 
 	if (numbers.length > 2) {
@@ -30,8 +29,9 @@ export const lcm = new Runner((...numbers) => {
 			value: (a * b) / gcd(a, b).value,
 		}
 	}
-}, meta)
+}
+lcm.meta = meta
 
-console.log(lcm(20, 30))
-console.log(lcm(20, 100))
-console.log(lcm(2, 3, 4, 5, 6))
+// console.log(lcm(20, 30))
+// console.log(lcm(20, 100))
+// console.log(lcm(2, 3, 4, 5, 6))
