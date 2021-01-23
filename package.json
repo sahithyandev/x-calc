@@ -1,30 +1,30 @@
 {
-  "name": "x-calc",
-  "version": "1.0.0",
-  "description": "An extended calculator which provides the functionalities that most of the pre-installed calculators miss.",
-  "main": "index.js",
-  "type": "module",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/sahithyandev/x-calc.git"
-  },
-  "author": {
-    "email": "sahithyan2701@gmail.com",
-    "name": "Sahithyan"
-  },
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/sahithyandev/x-calc/issues"
-  },
-  "homepage": "https://github.com/sahithyandev/x-calc#readme",
-  "dependencies": {
-  },
-  "devDependencies": {
-    "jest": "^26.6.3",
-    "prettier": "^2.2.1",
-    "eslint": "^7.18.0"
-  }
+	"name": "x-calc",
+	"version": "1.0.0",
+	"description": "An extended calculator which provides the functionalities that most of the pre-installed calculators miss.",
+	"main": "index.js",
+	"type": "module",
+	"scripts": {
+		"lint": "eslint .",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/sahithyandev/x-calc.git"
+	},
+	"author": {
+		"email": "sahithyan2701@gmail.com",
+		"name": "Sahithyan"
+	},
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/sahithyandev/x-calc/issues"
+	},
+	"homepage": "https://github.com/sahithyandev/x-calc#readme",
+	"dependencies": {},
+	"devDependencies": {
+		"jest": "^26.6.3",
+		"prettier": "^2.2.1",
+		"eslint": "^7.18.0"
+	}
 }
