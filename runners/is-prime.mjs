@@ -1,4 +1,4 @@
-import { Runner } from "./../models/index.js"
+import { Runner } from "../models/index.js"
 
 const meta = {
 	name: "is prime?",
@@ -12,7 +12,7 @@ export const isPrime = new Runner(
 	 * @exports [boolean|number]
 	 */
 	(n) => {
-		if (n === 1) return [false, null]
+		if (n < 2) return [false, null]
 		for (let divisor_i = 2; divisor_i <= n / 2; divisor_i++) {
 			if (n % divisor_i === 0) return [false, divisor_i]
 		}

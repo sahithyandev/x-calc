@@ -1,6 +1,6 @@
 import { Runner } from "../models/index.js"
 import { multiply } from "../utils.js"
-import { isPrime } from "./is-prime.js"
+import { isPrime } from "./is-prime.mjs"
 
 const meta = {
 	name: "facorize",
