@@ -134,7 +134,7 @@ export const factorize = new Runner(
 	 */
 	(n) => {
 		// get factors
-		if (n <= 0) return
+		if (n <= 0) return null
 		if (n === 1) return { factors: [1] }
 
 		const primeFactors = primeFactorize(n)
