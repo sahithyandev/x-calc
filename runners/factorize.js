@@ -1,5 +1,5 @@
 import { multiply, memoize } from "../utils.js"
-import { isPrime } from "./is-prime.mjs"
+import { isPrime } from "./is-prime.js"
 
 const meta = {
 	name: "facorize",
@@ -44,6 +44,8 @@ function primeFactorize(n) {
 
 /**
  * @param {object} primePowers
+ *
+ * @returns {number[]}
  */
 const factorsFromPrimePowers = (primePowers) => {
 	const _primePowersArray = Object.keys(primePowers).map((key) => [
@@ -53,9 +55,6 @@ const factorsFromPrimePowers = (primePowers) => {
 	const primeBases = Object.keys(primePowers).map((v) => parseInt(v))
 	const primePowerValues = _primePowersArray.map((_) => _[1])
 	const highestPower = Math.max(...primePowerValues)
-
-	// if (highestPower == 0) return [1]
-	if (highestPower == 1) return [1, ...primeBases]
 
 	let factorsInPowers = []
 	const factors = []
@@ -90,6 +89,7 @@ const factorsFromPrimePowers = (primePowers) => {
 				const factorInPowers = factorsInPowers[factorInPowers_i]
 
 				// then loop over the powerValues of a factor
+				// to check if it's correct
 				const isCorrectFactor = factorInPowers.every(
 					(power, i) => power <= primePowerValues[i],
 				)
@@ -112,7 +112,7 @@ const factorsFromPrimePowers = (primePowers) => {
 		factorsInPowers = factorsInPowers.filter((v) => v !== undefined)
 	}
 
-	return factors
+	return factors.sort((a, b) => a - b)
 }
 
 /**
@@ -132,33 +132,16 @@ export const factorize = memoize(
 		if (n <= 0) return null
 		if (n === 1) return { factors: [1] }
 
-		const primeFactors = primeFactorize(n)
-		const primePowers = extractPowers(primeFactors)
+		const primeFactorization = primeFactorize(n)
+		const primePowers = extractPowers(primeFactorization)
 		const factors = factorsFromPrimePowers(primePowers)
 
 		return {
 			factors,
-			primeFactors,
+			inPrimes: primeFactorization,
+			primeFactors: Object.keys(primePowers).map((v) => parseInt(v)),
 			primePowers,
 		}
 	},
 )
 factorize.meta = meta
-
-// new Array(100).fill(0).map((_, _i) => {
-//   const i = _i + 1
-//   console.time(i)
-//   console.log(factorize(i))
-//   // factorsCountObj[i] = factorize(i).factors.length
-//   console.timeEnd(i)
-//   return i
-// })
-// console.time("220")
-// console.log(factorize(220))
-// console.timeEnd("220")
-// console.time("432")
-// console.log(factorize(432))
-// console.timeEnd("432")
-// console.time("432425941")
-// console.log(factorize(432425941))
-// console.timeEnd("432425941")

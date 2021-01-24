@@ -1,4 +1,4 @@
-import { memoize } from "./../utils"
+import { memoize } from "../utils.js"
 
 const meta = {
 	name: "is prime?",
