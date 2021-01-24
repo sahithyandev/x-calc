@@ -1,0 +1,13 @@
+:root {
+	font-size: 18px;
+}
+
+body {
+	margin: 0;
+	height: 100vh;
+}
+
+.button {
+	--background-color: black;
+	--text-color: white;
+}

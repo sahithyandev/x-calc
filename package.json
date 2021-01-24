@@ -5,6 +5,7 @@
 	"main": "index.js",
 	"type": "module",
 	"scripts": {
+		"start": "PORT=3000 parcel src/index.html",
 		"lint": "eslint .",
 		"test": "NODE_OPTIONS=--experimental-vm-modules jest"
 	},
