@@ -1,0 +1,15 @@
+{
+	"name": "X-Calc",
+	"short_name": "X-Calc: Extended Calculator",
+	"description": "A calculator which has functions that a normal calculator doesn't",
+	"background_color": "#414141",
+	"theme_color": "#31AE63",
+	"shortcuts": [
+		{
+			"name": "How's weather today?",
+			"short_name": "Today",
+			"description": "View weather information for today",
+			"url": "/"
+		}
+	]
+}

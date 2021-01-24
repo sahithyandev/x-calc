@@ -5,10 +5,11 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>X-Calc</title>
 		<link rel="stylesheet" href="./style/main.css" />
-		<!-- TODO add manifest -->
+		<link rel="manifest" href="./manifest.webmanifest" data-parceljs-ignore />
 		<!-- TODO add favicon -->
 	</head>
 	<body>
+		<h1>just a heading</h1>
 		<div class="display"></div>
 		<div class="buttons-container">
 			<div class="basic-buttons">
@@ -22,5 +23,21 @@
 			</div>
 		</div>
 
+		<script>
+			if ("serviceWorker" in navigator) {
+				window.addEventListener("load", () => {
+					navigator.serviceWorker
+						.register("./service-worker.js")
+						.then((v) => {
+							console.log("service worker registered", v)
+						})
+						.catch((err) => {
+							console.log("err", err)
+						})
+				})
+			} else {
+				console.warn("serviceworker not available")
+			}
+		</script>
 	</body>
 </html>
