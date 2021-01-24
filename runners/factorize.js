@@ -1,4 +1,4 @@
-import { multiply } from "../utils.js"
+import { multiply, memoize } from "../utils.js"
 import { isPrime } from "./is-prime.mjs"
 
 const meta = {
@@ -122,26 +122,27 @@ const factorsFromPrimePowers = (primePowers) => {
  * @property {object} primePowers
  */
 
-/**
- * @param {number} n
- *
- * @returns {FactorizeOutputObj}
- */
-export const factorize = (n) => {
-	// get factors
-	if (n <= 0) return null
-	if (n === 1) return { factors: [1] }
+export const factorize = memoize(
+	/**
+	 * @param {number} n
+	 *
+	 * @returns {FactorizeOutputObj}
+	 */
+	(n) => {
+		if (n <= 0) return null
+		if (n === 1) return { factors: [1] }
 
-	const primeFactors = primeFactorize(n)
-	const primePowers = extractPowers(primeFactors)
-	const factors = factorsFromPrimePowers(primePowers)
+		const primeFactors = primeFactorize(n)
+		const primePowers = extractPowers(primeFactors)
+		const factors = factorsFromPrimePowers(primePowers)
 
-	return {
-		factors,
-		primeFactors,
-		primePowers,
-	}
-}
+		return {
+			factors,
+			primeFactors,
+			primePowers,
+		}
+	},
+)
 factorize.meta = meta
 
 // new Array(100).fill(0).map((_, _i) => {

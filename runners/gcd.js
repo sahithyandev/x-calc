@@ -1,4 +1,4 @@
-import { multiply } from "../utils.js"
+import { multiply, memoize } from "../utils.js"
 import { factorize } from "./factorize.js"
 
 const meta = {
@@ -30,69 +30,74 @@ function setIntersection(A, B) {
  * @property {number[]}	valueAsPrimeFactors
  */
 
-/**
- * @param {number[]} numbers
- * @returns {GCDOutputObj}
- */
-export const gcd = (...numbers) => {
-	if (numbers.length < 1) {
-		throw new Error("gcd: requires atleast two numbers")
-	}
-	if (numbers.length > 2) {
-		// calculate gcd of the first two numbers
-		let f2 = gcd(numbers[0], numbers[1]).value
-
-		return gcd(f2, ...numbers.slice(2))
-	}
-
-	if (numbers.length === 2) {
-		const [a, b] = numbers
-		if (a == b) {
-			return 0
+export const gcd = memoize(
+	/**
+	 * @param {number[]} numbers
+	 * @returns {GCDOutputObj}
+	 */
+	(...numbers) => {
+		if (numbers.length < 1) {
+			throw new Error("gcd: requires atleast two numbers")
 		}
-		if (a == 0 || b == 0) {
-			return a || b // return which is not zero
+		if (numbers.length > 2) {
+			// calculate gcd of the first two numbers
+			let f2 = gcd(numbers[0], numbers[1]).value
+
+			return gcd(f2, ...numbers.slice(2))
 		}
 
-		// get primeFactors of the numbers
-		// then name every factor to do the set intersection
-		const primeFactors = numbers.map((v) => {
-			const primePowers = factorize(v).primePowers
+		if (numbers.length === 2) {
+			const [a, b] = numbers
+			if (a == b) {
+				return 0
+			}
+			if (a == 0 || b == 0) {
+				return a || b // return which is not zero
+			}
 
-			const entries = Object.keys(primePowers).map((key) => [
-				key,
-				primePowers[key],
-			])
+			// get primeFactors of the numbers
+			// then name every factor to do the set intersection
+			const primeFactors = numbers.map((v) => {
+				const primePowers = factorize(v).primePowers
 
-			const namedFactors = []
-			entries.forEach(([powerBase, powerValue]) => {
-				for (let power_i = 0; power_i < powerValue; power_i++) {
-					namedFactors.push(`${powerBase}<${power_i}>`)
-				}
+				const entries = Object.keys(primePowers).map((key) => [
+					key,
+					primePowers[key],
+				])
+
+				const namedFactors = []
+				entries.forEach(([powerBase, powerValue]) => {
+					for (let power_i = 0; power_i < powerValue; power_i++) {
+						namedFactors.push(`${powerBase}<${power_i}>`)
+					}
+				})
+
+				return new Set(namedFactors)
 			})
 
-			return new Set(namedFactors)
-		})
+			/**
+			 * @param {string} factorName
+			 * @exports string
+			 */
+			const removeFactorName = (factorName) => factorName.replace(/<\d+>/, "")
 
-		/**
-		 * @param {string} factorName
-		 * @exports string
-		 */
-		const removeFactorName = (factorName) => factorName.replace(/<\d+>/, "")
+			const intersectionArray = Array.from(
+				setIntersection(primeFactors[0], primeFactors[1]),
+			)
+				.map(removeFactorName)
+				.map((v) => parseInt(v))
+			if (intersectionArray.length === 0) intersectionArray.push(1)
 
-		const intersectionArray = Array.from(
-			setIntersection(primeFactors[0], primeFactors[1]),
-		)
-			.map(removeFactorName)
-			.map((v) => parseInt(v))
-		if (intersectionArray.length === 0) intersectionArray.push(1)
-
-		return {
-			value: multiply(...intersectionArray),
-			valueAsPrimeFactors: intersectionArray,
+			return {
+				value: multiply(...intersectionArray),
+				valueAsPrimeFactors: intersectionArray,
+			}
 		}
-	}
-}
+	},
+	(...numbers) => {
+		return numbers.sort((a, b) => a - b).join(",")
+	},
+)
 gcd.meta = meta
 
 // console.log(gcd(10, 40), 10)
