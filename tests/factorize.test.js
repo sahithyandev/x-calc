@@ -1,4 +1,4 @@
-import { factorize } from "../runners/factorize"
+import { factorize } from "../src/runners/factorize"
 
 const PRIMES = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29]
 describe("factorize: primes", () => {

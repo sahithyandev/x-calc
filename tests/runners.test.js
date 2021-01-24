@@ -1,4 +1,4 @@
-import * as RUNNERS_OBJ from "./../runners/index.js"
+import * as RUNNERS_OBJ from "./../src/runners/index.js"
 
 const RUNNERS_ARRAY = Object.keys(RUNNERS_OBJ).map((key) => [
 	key,
