@@ -1,26 +1,11 @@
 import { multiply, memoize } from "../utils.js"
 import { factorize } from "./factorize.js"
+import { iSet } from "./../models/iSet.js"
 
 const meta = {
 	name: "GCD",
 	long_name: "Greatest Common Divisor",
 	description: "",
-}
-
-/**
- * @param {Set<number>} A
- * @param {Set<number>} B
- *
- * @returns {Set<number>}
- */
-function setIntersection(A, B) {
-	let _intersection = new Set()
-	for (let elem of B) {
-		if (A.has(elem)) {
-			_intersection.add(elem)
-		}
-	}
-	return _intersection
 }
 
 /**
@@ -82,7 +67,7 @@ export const gcd = memoize(
 			const removeFactorName = (factorName) => factorName.replace(/<\d+>/, "")
 
 			const intersectionArray = Array.from(
-				setIntersection(primeFactors[0], primeFactors[1]),
+				new iSet(primeFactors[0]).intersectionWith(new iSet(primeFactors[1])),
 			)
 				.map(removeFactorName)
 				.map((v) => parseInt(v))
