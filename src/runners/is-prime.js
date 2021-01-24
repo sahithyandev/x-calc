@@ -1,8 +1,9 @@
 import { memoize } from "../utils.js"
 
 const meta = {
-	name: "is prime?",
+	name: "is-prime",
 	description: "Checks if a number is a prime number",
+	usage: "is-prime(~10~)",
 }
 
 export const isPrime = memoize(

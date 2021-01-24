@@ -2,8 +2,9 @@ import { multiply, memoize } from "../utils.js"
 import { isPrime } from "./is-prime.js"
 
 const meta = {
-	name: "facorize",
+	name: "factorize",
 	description: "Factorize a number",
+	usage: "factorize(~48~)",
 }
 
 /**

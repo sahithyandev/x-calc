@@ -3,9 +3,10 @@ import { factorize } from "./factorize.js"
 import { iSet } from "./../models/iSet.js"
 
 const meta = {
-	name: "GCD",
-	long_name: "Greatest Common Divisor",
+	name: "gcd",
+	longName: "Greatest Common Divisor",
 	description: "",
+	usage: "gcd(~100,40~)",
 }
 
 /**

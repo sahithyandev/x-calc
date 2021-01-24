@@ -2,9 +2,10 @@ import { memoize } from "../utils.js"
 import { gcd } from "./gcd.js"
 
 const meta = {
-	name: "LCM",
-	long_name: "Least Common Multiple",
+	name: "lcm",
+	longName: "Least Common Multiple",
 	description: "",
+	usage: "lcm(~4,6~)",
 }
 
 /**
