@@ -22,7 +22,7 @@ describe("Runner: return type", () => {
 			global[runnerName] = runnerFunc
 			// and calling the usage code example
 			const q = evaluate(runnerFunc.meta.usage.replace(/~/g, ""))
-			expect(q.value).not.toBe(undefined)
+			expect(q.mainValue).not.toBe(undefined)
 		})
 	})
 })

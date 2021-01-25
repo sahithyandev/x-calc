@@ -20,7 +20,6 @@ const _STATE = {
 	},
 }
 
-console.log("Q", _STATE)
 const STATE = new Proxy(_STATE, {
 	get: function (target, prop, receiver) {
 		if (target.callbacks?.get && target.callbacks?.get[prop]) {
@@ -79,7 +78,6 @@ function addBasicButtons() {
 		equalButton.style.setProperty("--background-color", "var(--theme-color)")
 		container.append(equalButton)
 	}
-	console.log(container)
 
 	container.onclick = (event) => {
 		console.log(event)
@@ -112,7 +110,7 @@ document.body.onload = () => {
  */
 function updateOutput(newInputString) {
 	const outputDisplay = document.getElementById("output-display")
-	outputDisplay.innerHTML = evaluate(newInputString).value
+	outputDisplay.innerHTML = evaluate(newInputString).mainValue
 }
 
 document

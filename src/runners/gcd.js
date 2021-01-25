@@ -75,7 +75,7 @@ export const gcd = memoize(
 			if (intersectionArray.length === 0) intersectionArray.push(1)
 
 			return {
-				value: multiply(intersectionArray),
+				mainValue: multiply(intersectionArray),
 				valueAsPrimeFactors: intersectionArray,
 			}
 		}

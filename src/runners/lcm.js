@@ -11,7 +11,7 @@ const meta = {
 /**
  * @typedef LCMResultObj
  *
- * @property {number} value
+ * @property {number} mainValue
  */
 
 export const lcm = memoize(
@@ -24,7 +24,7 @@ export const lcm = memoize(
 
 		if (numbers.length > 2) {
 			const [a, b, ...rest] = numbers
-			return lcm(lcm(a, b).value, ...rest)
+			return lcm(lcm(a, b).mainValue, ...rest)
 		}
 
 		if (numbers.length === 2) {
@@ -32,11 +32,11 @@ export const lcm = memoize(
 
 			if (numbers.includes(1))
 				return {
-					value: a == 1 ? b : a,
+					mainValue: a == 1 ? b : a,
 				}
 
 			return {
-				value: (a * b) / gcd(a, b).value,
+				mainValue: (a * b) / gcd(a, b).mainValue,
 			}
 		}
 	},

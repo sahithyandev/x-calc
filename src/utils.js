@@ -37,7 +37,6 @@ export const evaluate = (inputString) => {
 		inputString = inputString
 			.replace(/-(\w)/, (v) => v.toUpperCase())
 			.replace(/-/, "")
-		console.log(inputString)
 		return eval(inputString)
 	} catch (error) {
 		console.warn(error)

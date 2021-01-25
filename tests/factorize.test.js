@@ -4,11 +4,16 @@ const PRIMES = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29]
 describe("factorize: primes", () => {
 	PRIMES.forEach((prime) => {
 		test(`${prime}`, () => {
-			const result = factorize(prime)
-			expect(result.factors).toStrictEqual([1, prime])
-			expect(result.inPrimes).toStrictEqual([prime])
-			expect(result.primeFactors).toStrictEqual([prime])
-			expect(result.primePowers).toStrictEqual({
+			const {
+				mainValue: factors,
+				inPrimes,
+				primeFactors,
+				primePowers,
+			} = factorize(prime)
+			expect(factors).toStrictEqual([1, prime])
+			expect(inPrimes).toStrictEqual([prime])
+			expect(primeFactors).toStrictEqual([prime])
+			expect(primePowers).toStrictEqual({
 				[prime]: 1,
 			})
 		})
@@ -17,7 +22,7 @@ describe("factorize: primes", () => {
 
 const NON_PRIMES = {
 	6: {
-		factors: [1, 2, 3, 6],
+		mainValue: [1, 2, 3, 6],
 		primeFactors: [2, 3],
 		inPrimes: [2, 3],
 		primePowers: {
@@ -26,7 +31,7 @@ const NON_PRIMES = {
 		},
 	},
 	8: {
-		factors: [1, 2, 4, 8],
+		mainValue: [1, 2, 4, 8],
 		primeFactors: [2],
 		inPrimes: [2, 2, 2],
 		primePowers: {
@@ -34,7 +39,7 @@ const NON_PRIMES = {
 		},
 	},
 	9: {
-		factors: [1, 3, 9],
+		mainValue: [1, 3, 9],
 		primeFactors: [3],
 		inPrimes: [3, 3],
 		primePowers: {
@@ -42,7 +47,7 @@ const NON_PRIMES = {
 		},
 	},
 	10: {
-		factors: [1, 2, 5, 10],
+		mainValue: [1, 2, 5, 10],
 		inPrimes: [2, 5],
 		primeFactors: [2, 5],
 		primePowers: {
@@ -51,7 +56,7 @@ const NON_PRIMES = {
 		},
 	},
 	30: {
-		factors: [1, 2, 3, 5, 6, 10, 15, 30],
+		mainValue: [1, 2, 3, 5, 6, 10, 15, 30],
 		inPrimes: [2, 3, 5],
 		primeFactors: [2, 3, 5],
 		primePowers: {
