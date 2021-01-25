@@ -1,5 +1,7 @@
 :root {
 	font-size: 18px;
+	--background-color: #414141;
+	--theme-color: #31ae63;
 }
 
 body {

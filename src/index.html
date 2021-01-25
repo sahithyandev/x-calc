@@ -10,16 +10,19 @@
 	</head>
 	<body>
 		<h1>just a heading</h1>
-		<div class="display"></div>
+		<div id="display">
+			<input type="text" id="input-display" />
+			<div id="output-display"></div>
+		</div>
 		<div class="buttons-container">
 			<div class="basic-buttons">
+				<!-- <button id="add" data-button-type="basic">+</button>
 				<button id="add" data-button-type="basic">+</button>
 				<button id="add" data-button-type="basic">+</button>
-				<button id="add" data-button-type="basic">+</button>
-				<button id="add" data-button-type="basic">+</button>
+				<button id="add" data-button-type="basic">+</button> -->
 			</div>
-			<div class="function-button">
-				<button id="lcd" data-button-type="function">lcd</button>
+			<div class="function-buttons">
+				<!-- <button id="lcd" data-button-type="function">lcd</button> -->
 			</div>
 		</div>
 
@@ -32,12 +35,14 @@
 							console.log("service worker registered", v)
 						})
 						.catch((err) => {
-							console.log("err", err)
+							console.warn("err", err)
 						})
 				})
 			} else {
 				console.warn("serviceworker not available")
 			}
 		</script>
+
+		<script src="./app.js"></script>
 	</body>
 </html>
