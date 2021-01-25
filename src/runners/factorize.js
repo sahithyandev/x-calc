@@ -30,9 +30,9 @@ function extractPowers(numbers) {
 function primeFactorize(n) {
 	if (n < 2) return
 
-	const [result, divider1] = isPrime(n)
+	const { value: isPrimeResult, divider: divider1 } = isPrime(n)
 
-	if (result) return [n]
+	if (isPrimeResult) return [n]
 
 	const primeFactors = []
 	const divider2 = n / divider1
@@ -138,7 +138,7 @@ export const factorize = memoize(
 		const factors = factorsFromPrimePowers(primePowers)
 
 		return {
-			factors,
+			value: factors,
 			inPrimes: primeFactorization,
 			primeFactors: Object.keys(primePowers).map((v) => parseInt(v)),
 			primePowers,

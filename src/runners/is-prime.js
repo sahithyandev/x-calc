@@ -13,14 +13,14 @@ export const isPrime = memoize(
 	 * @returns {[boolean|number]}
 	 */
 	(n) => {
-		if (n < 2) return [false, null]
+		if (n < 2) return { value: false, divider: null }
 
 		for (let divisor_i = 2; divisor_i <= n / 2; divisor_i++) {
 			if (n % divisor_i === 0) {
-				return [false, divisor_i]
+				return { value: false, divider: divisor_i }
 			}
 		}
-		return [true, null]
+		return { value: true, divider: null }
 	},
 )
 isPrime.meta = meta

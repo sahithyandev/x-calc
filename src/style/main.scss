@@ -1,0 +1,92 @@
+:root {
+	font-size: 20px;
+	--background-color: #414141;
+	--theme-color: #31ae63;
+	--text-color: white;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	height: 100vh;
+	background-color: var(--background-color);
+	padding: 12px;
+	margin: 0;
+	color: var(--text-color);
+}
+
+button {
+	&:focus {
+		outline: none;
+		// TODO add press effect
+		// filter: brightness(80%);
+	}
+}
+
+#display {
+	margin: 20px 0;
+	margin-bottom: 40px;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	font-family: "Roboto Mono", monospace;
+
+	#input-display {
+		font-family: inherit;
+		font-size: 1.1rem;
+		font-weight: 600;
+		color: white;
+		text-align: right;
+
+		background: none;
+		border: none;
+		width: 100%;
+		// border: 1px solid black;
+
+		&:focus {
+			outline: none;
+		}
+	}
+
+	#output-display {
+		margin-top: 10px;
+		opacity: 50%;
+	}
+}
+
+#buttons-container {
+	& > div {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		gap: 12px;
+		height: auto;
+	}
+
+	#basic-buttons {
+		margin-bottom: 32px;
+
+		#equal-button {
+			margin-left: auto;
+		}
+	}
+
+	button {
+		--background-color: #6d6d6d;
+		--text-color: white;
+
+		background-color: var(--background-color);
+		color: var(--text-color);
+		border: none;
+		border-radius: 4px;
+
+		padding: 8px 12px;
+		min-width: 45px;
+
+		font-size: 0.9rem;
+		font-family: "Roboto";
+		font-weight: 500;
+	}
+}

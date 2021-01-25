@@ -1,3 +1,4 @@
+import { evaluate } from "./utils"
 import * as _FUNCTIONS from "../src/runners/index"
 
 const FUNCTIONS = Object.keys(_FUNCTIONS).map((key) => {
@@ -11,14 +12,15 @@ const _STATE = {
 	inputString: "",
 	callbacks: {
 		set: {
-			inputString: () => {
-				updateOutput()
+			inputString: (oldValue, newValue) => {
+				document.getElementById("input-display").value = newValue
+				updateOutput(newValue)
 			},
 		},
 	},
 }
 
-console.log(_STATE)
+console.log("Q", _STATE)
 const STATE = new Proxy(_STATE, {
 	get: function (target, prop, receiver) {
 		if (target.callbacks?.get && target.callbacks?.get[prop]) {
@@ -39,51 +41,60 @@ const STATE = new Proxy(_STATE, {
 	},
 })
 
-const createButton = (text, onClick) => {
+const createButton = (text) => {
 	const button = document.createElement("button")
 	button.innerHTML = text
-	button.onclick = onClick
 
 	return button
 }
 
-/**
- * @param {string} inputString
- */
-const evaluate = (inputString) => {
-	try {
-		inputString = inputString
-			.replace(/-(\w)/, (v) => v.toUpperCase())
-			.replace(/-/, "")
-		console.log(inputString)
-		return eval(inputString)
-	} catch (error) {
-		console.warn(error)
-		// TODO show it to the user
-		return error
-	}
-}
-
 function addBasicButtons() {
-	const container = document.querySelector(".basic-buttons")
-	const buttons = [{ name: "add", displayText: "+" }] // TODO fill it
+	const container = document.querySelector("#basic-buttons")
+	const buttons = [
+		{ name: "add", displayText: "+" },
+		{
+			name: "subtract",
+			displayText: "-",
+		},
+		{
+			name: "multiply",
+			displayText: "*",
+		},
+		{
+			name: "divide",
+			displayText: "/",
+		},
+	]
+
+	container.append(
+		...buttons.map((buttonObj) => {
+			return createButton(buttonObj.displayText)
+		}),
+	)
+
+	{
+		const equalButton = document.createElement("button")
+		equalButton.innerHTML = "="
+		equalButton.id = "equal-button"
+		equalButton.style.setProperty("--background-color", "var(--theme-color)")
+		container.append(equalButton)
+	}
+	console.log(container)
 
 	container.onclick = (event) => {
 		console.log(event)
 	}
-	// document.querySelector(container).append()
 }
 
 function addFunctionButtons() {
-	const container = document.querySelector(".function-buttons")
-	const functionButtons = FUNCTIONS.map((functionObj) => {
-		return {
-			...functionObj.meta,
-			runner: functionObj,
-		}
-	})
+	const container = document.querySelector("#function-buttons")
 
-	console.log(functionButtons)
+	container.append(
+		...FUNCTIONS.map((functionObj) => {
+			const name = functionObj.meta.name
+			return createButton(name)
+		}),
+	)
 
 	container.onclick = (event) => {
 		console.log("function-buttons", event)
@@ -91,14 +102,21 @@ function addFunctionButtons() {
 }
 
 document.body.onload = () => {
+	STATE.inputString = "is-prime(10)"
 	addFunctionButtons()
+	addBasicButtons()
 }
 
 /**
  * @param {Event} event
  */
-function updateOutput(event) {}
+function updateOutput(newInputString) {
+	const outputDisplay = document.getElementById("output-display")
+	outputDisplay.innerHTML = evaluate(newInputString).value
+}
 
-document.getElementById("input-display").addEventListener("change", (event) => {
-	console.log(event)
-})
+document
+	.getElementById("input-display")
+	?.addEventListener("change", (event) => {
+		STATE.inputString = event.target.value
+	})

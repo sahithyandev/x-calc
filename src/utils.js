@@ -28,3 +28,20 @@ export const memoize = (func, keyResolver) => {
 		return result
 	}
 }
+
+/**
+ * @param {string} inputString
+ */
+export const evaluate = (inputString) => {
+	try {
+		inputString = inputString
+			.replace(/-(\w)/, (v) => v.toUpperCase())
+			.replace(/-/, "")
+		console.log(inputString)
+		return eval(inputString)
+	} catch (error) {
+		console.warn(error)
+		// TODO show it to the user
+		return error
+	}
+}
