@@ -12,7 +12,7 @@ const meta = {
 /**
  * @typedef GCDOutputObj
  *
- * @property {number} value
+ * @property {number} mainValue
  * @property {number[]}	valueAsPrimeFactors
  */
 
@@ -35,10 +35,16 @@ export const gcd = memoize(
 		if (numbers.length === 2) {
 			const [a, b] = numbers
 			if (a == b) {
-				return 0
+				return {
+					mainValue: a,
+					valueAsPrimeFactors: factorize(a).mainValue,
+				}
 			}
 			if (a == 0 || b == 0) {
-				return a || b // return which is not zero
+				return {
+					mainValue: a || b,
+					valueAsPrimeFactors: factorize(a || b).mainValue,
+				} // return which is not zero
 			}
 
 			// get primeFactors of the numbers

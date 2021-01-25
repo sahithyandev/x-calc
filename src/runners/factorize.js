@@ -26,6 +26,8 @@ function extractPowers(numbers) {
 
 /**
  * @description Factorizes a number into primes
+ *
+ * @returns {number[]}
  */
 function primeFactorize(n) {
 	if (n < 2) return
@@ -118,9 +120,11 @@ const factorsFromPrimePowers = (primePowers) => {
 
 /**
  * @typedef FactorizeOutputObj
- * @property {number[]} factors
+ * @property {number[]} mainValue
+ * @property {} inPrimes
  * @property {number[]} primeFactors
  * @property {object} primePowers
+ *
  */
 
 export const factorize = memoize(
