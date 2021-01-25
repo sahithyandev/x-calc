@@ -1,9 +1,9 @@
 import { isPrime } from "./../src/runners/is-prime"
 
-const PRIME_NUMBERS = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47]
+import { PRIMES } from "./NUMBERS"
 
 describe("Checking for primes", () => {
-	PRIME_NUMBERS.forEach((number) => {
+	PRIMES.forEach((number) => {
 		test(`${number}`, () => {
 			const { mainValue: result, divider } = isPrime(number)
 			expect(result).toBe(true)

@@ -1,6 +1,6 @@
 import { factorize } from "../src/runners/factorize"
 
-const PRIMES = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29]
+import { PRIMES } from "./NUMBERS"
 describe("factorize: primes", () => {
 	PRIMES.forEach((prime) => {
 		test(`${prime}`, () => {
