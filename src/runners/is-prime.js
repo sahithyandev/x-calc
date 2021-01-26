@@ -20,7 +20,10 @@ export const isPrime = memoize(
 	 * @returns {IsPrimeReturnObj}
 	 */
 	(n) => {
-		if (n < 2) return { mainValue: false, divider: null }
+		if (n === undefined) {
+			throw new Error("is-prime: a value must be passed")
+		}
+		if (n < 2) return { mainValue: false, divider: undefined }
 
 		for (let divisor_i = 2; divisor_i <= n / 2; divisor_i++) {
 			if (n % divisor_i === 0) {

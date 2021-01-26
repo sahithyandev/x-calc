@@ -34,13 +34,12 @@ export const memoize = (func, keyResolver) => {
  */
 export const evaluate = (inputString) => {
 	try {
-		inputString = inputString
-			.replace(/-(\w)/, (v) => v.toUpperCase())
-			.replace(/-/, "")
-		return eval(inputString)
+		const _inputString = inputString.replace(/-([a-zA-Z])/, (v) =>
+			v.slice(1).toUpperCase(),
+		)
+		return eval(_inputString)
 	} catch (error) {
-		console.warn(error)
-		// TODO show it to the user
-		return error
+		console.warn("function called from calculator wrong format", error)
+		return { error }
 	}
 }

@@ -43,3 +43,6 @@ export const NON_PRIME_NUMBERS = [
 	18,
 	20,
 ]
+
+export const isPositive = (n) => n > 0
+export const isNegative = (n) => n < 0
