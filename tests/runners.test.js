@@ -6,7 +6,7 @@ const RUNNERS_ARRAY = Object.keys(RUNNERS_OBJ).map((key) => [
 	RUNNERS_OBJ[key],
 ])
 
-describe("Runner.meta", () => {
+describe("runners: meta", () => {
 	RUNNERS_ARRAY.forEach(([runnerName, runnerFunc]) => {
 		test(runnerName, () => {
 			expect(runnerFunc.meta).not.toBe(undefined)
@@ -15,7 +15,7 @@ describe("Runner.meta", () => {
 	})
 })
 
-describe("Runner: return type", () => {
+describe("runners: return type", () => {
 	RUNNERS_ARRAY.forEach(([runnerName, runnerFunc]) => {
 		test(runnerName, () => {
 			// adding the functions to global scope

@@ -6,11 +6,18 @@ const meta = {
 	usage: "is-prime(~10~)",
 }
 
+/**
+ * @typedef IsPrimeReturnObj
+ *
+ * @property {boolean} mainValue
+ * @property {number} divider
+ */
+
 export const isPrime = memoize(
 	/**
 	 * @param {number} n
 	 *
-	 * @returns {[boolean|number]}
+	 * @returns {IsPrimeReturnObj}
 	 */
 	(n) => {
 		if (n < 2) return { mainValue: false, divider: null }
