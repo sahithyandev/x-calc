@@ -1,9 +1,12 @@
 /**
+ * @description Multiplies every number in a number[]
  * @param {number[]} numbers
  *
  * @returns {number}
  */
 export const multiply = (numbers) => {
+	const isAllNumbers = numbers.every((number) => typeof number === "number")
+	if (!isAllNumbers) throw new Error("Only numbers can be multiplied")
 	return numbers.reduce((prev, current) => prev * current)
 }
 
@@ -37,7 +40,10 @@ export const evaluate = (inputString) => {
 		const _inputString = inputString.replace(/-([a-zA-Z])/, (v) =>
 			v.slice(1).toUpperCase(),
 		)
-		return eval(_inputString).toFixed(12)
+		const output = eval(_inputString)
+		// console.log(output, typeof output)
+		// if (typeof output === "number") return output.toPrecision(12)
+		return output
 	} catch (error) {
 		console.warn("function called from calculator wrong format", error)
 		return { error }
