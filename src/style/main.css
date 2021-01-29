@@ -77,7 +77,7 @@ button:focus {
 
 #display #output-display {
   margin-top: 10px;
-  opacity: 50%;
+  opacity: 0.6;
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
