@@ -16,6 +16,26 @@ body {
   padding: 12px;
   margin: 0;
   color: var(--text-color);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+@media (min-width: 600px) {
+  .wrapper {
+    min-width: 480px;
+  }
+}
+
+button {
+  cursor: pointer;
 }
 
 button:focus {
@@ -36,6 +56,8 @@ button:focus {
       -ms-flex-align: end;
           align-items: flex-end;
   font-family: "Roboto Mono", monospace;
+  text-align: right;
+  max-width: 520px;
 }
 
 #display #input-display {
@@ -56,6 +78,15 @@ button:focus {
 #display #output-display {
   margin-top: 10px;
   opacity: 50%;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  min-height: 40px;
+  overflow-wrap: normal;
+}
+
+#buttons-container {
+  max-width: 450px;
 }
 
 #buttons-container > div {
