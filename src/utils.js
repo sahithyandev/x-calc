@@ -42,7 +42,8 @@ export const evaluate = (inputString) => {
 		)
 		const output = eval(_inputString)
 		// console.log(output, typeof output)
-		// if (typeof output === "number") return output.toPrecision(12)
+		if (typeof output === "number")
+			return output.toPrecision(10).replace(/\.?0+$/g, "")
 		return output
 	} catch (error) {
 		console.warn("function called from calculator wrong format", error)

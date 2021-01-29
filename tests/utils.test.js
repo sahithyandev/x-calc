@@ -32,12 +32,12 @@ import { multiply, evaluate } from "../src/utils"
 // })
 
 // TODO IMPORTANT
-// describe("fn: evaluate", () => {
-// 	const TEST_CASES = [{ input: "0.2+0.1", output: "0.3" }, { input: "0.1+0.1+0.1", output: "0.3" }]
+describe("fn: evaluate", () => {
+	const TEST_CASES = [{ input: "0.2+0.1", output: "0.3" }, { input: "0.1+0.1+0.1", output: "0.3" }]
 
-// 	TEST_CASES.forEach((obj) => {
-// 		test(`${obj.input}`, () => {
-// 			expect(evaluate(obj.input) + "").toBe(obj.output)
-// 		})
-// 	})
-// })
+	TEST_CASES.forEach((obj) => {
+		test(`${obj.input}`, () => {
+			expect(evaluate(obj.input) + "").toBe(obj.output)
+		})
+	})
+})
