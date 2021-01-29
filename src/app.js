@@ -1,5 +1,11 @@
+// import { create, all } from "mathjs/number"
 import { evaluate } from "./utils"
 import * as _FUNCTIONS from "../src/runners/index"
+
+// const MathJs = create(all)
+// const MathParser = MathJs.parser()
+// window["MathParser"] = MathParser
+// window["MathJs"] = MathJs
 
 const FUNCTIONS = Object.keys(_FUNCTIONS).map((key) => {
 	const _ = _FUNCTIONS[key]
@@ -13,6 +19,7 @@ const _STATE = {
 	callbacks: {
 		set: {
 			inputString: (oldValue, newValue) => {
+				console.log("i", newValue)
 				document.getElementById("input-display").value = newValue
 				updateOutput(newValue)
 			},
@@ -21,7 +28,7 @@ const _STATE = {
 }
 
 const STATE = new Proxy(_STATE, {
-	get: function (target, prop, receiver) {
+	get: function (target, prop) {
 		if (target.callbacks?.get && target.callbacks?.get[prop]) {
 			target.callbacks.get[prop].apply(null)
 		}
@@ -100,9 +107,24 @@ function addFunctionButtons() {
 }
 
 document.body.onload = () => {
-	STATE.inputString = "is-prime(10)"
+	STATE.inputString = "0.2+0.1"
 	addFunctionButtons()
 	addBasicButtons()
+}
+
+const calculatorOutputFormatter = (value) => {
+	if (!(value instanceof Object)) {
+		return value
+	}
+	const _value = value.mainValue
+
+	// if array return ", " seperated
+	if (value instanceof Array) {
+		return _value.join(", ").concat(`\n[${value.length}]`)
+	}
+
+	// otherwise return normal
+	return _value
 }
 
 /**
@@ -110,7 +132,19 @@ document.body.onload = () => {
  */
 function updateOutput(newInputString) {
 	const outputDisplay = document.getElementById("output-display")
-	outputDisplay.innerHTML = evaluate(newInputString).mainValue
+	const evaluatedInput = evaluate(newInputString)
+	if (evaluatedInput instanceof Object && "error" in evaluatedInput) {
+		// it's an error
+		outputDisplay.innerHTML = evaluatedInput.error.message
+	} else {
+		outputDisplay.innerHTML = calculatorOutputFormatter(evaluatedInput)
+		// MathJs.format(
+		// MathParser.evaluate(newInputString),
+		// 	{ precision: 14 },
+		// )
+		// calculatorOutputFormatter(evaluatedInput)
+	}
+	console.log(evaluatedInput)
 }
 
 document

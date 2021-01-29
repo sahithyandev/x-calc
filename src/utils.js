@@ -37,7 +37,7 @@ export const evaluate = (inputString) => {
 		const _inputString = inputString.replace(/-([a-zA-Z])/, (v) =>
 			v.slice(1).toUpperCase(),
 		)
-		return eval(_inputString)
+		return eval(_inputString).toFixed(12)
 	} catch (error) {
 		console.warn("function called from calculator wrong format", error)
 		return { error }
