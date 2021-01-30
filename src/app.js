@@ -166,7 +166,9 @@ function addFunctionButtons() {
 }
 
 document.body.onload = () => {
-	STATE.inputString = "is-prime(gcd(100,40))"
+	if (location.hostname === "localhost") {
+		STATE.inputString = "is-prime(gcd(100,40))"
+	}
 	addFunctionButtons()
 	addBasicButtons()
 }
