@@ -50,3 +50,37 @@ export const evaluate = (inputString) => {
 		return { error }
 	}
 }
+
+/**
+ * @param {T} func
+ * @param {number} delay
+ *
+ * @returns {T}
+ *
+ * @template T
+ */
+export const debounce = (func, delay) => {
+	let debounceTimer
+	return function (...args) {
+		const context = this
+		clearTimeout(debounceTimer)
+		debounceTimer = setTimeout(() => {
+			func.apply(context, args)
+		}, delay)
+	}
+}
+
+/**
+ * @param {string} str
+ */
+export const findHyphenPositions = (str) => {
+	// if (str.split("~").length !== 3)
+	// 	throw new Error("str must contain only 2 `~`")
+	const firstHyphen = str.match(/~/).index
+	const secondHyphen = str
+		.split("")
+		.reverse()
+		.findIndex((v) => v === "~")
+
+	return [firstHyphen, secondHyphen]
+}

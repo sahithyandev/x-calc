@@ -135,7 +135,7 @@ export const factorize = memoize(
 	 */
 	(n) => {
 		if (n <= 0) return null
-		if (n === 1) return { factors: [1] }
+		if (n === 1) return { mainValue: [1] }
 
 		const primeFactorization = primeFactorize(n)
 		const primePowers = extractPowers(primeFactorization)

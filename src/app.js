@@ -1,27 +1,68 @@
 // import { create, all } from "mathjs/number"
-import { evaluate } from "./utils"
+import { evaluate, debounce, findHyphenPositions } from "./utils"
 import * as _FUNCTIONS from "../src/runners/index"
+import { all } from "mathjs"
 
 // const MathJs = create(all)
 // const MathParser = MathJs.parser()
 // window["MathParser"] = MathParser
 // window["MathJs"] = MathJs
 
+// TODO think of a good name
+/**
+ * @description Normally, those runner functions return an object. This function creates a new instance of those runners which return only thier mainValue
+ * @param {Function} runner
+ */
+const ie = (runner) => {
+	const x = function (...args) {
+		return runner.apply(null, args).mainValue
+	}
+	x.meta = runner.meta
+	return x
+}
+
 const FUNCTIONS = Object.keys(_FUNCTIONS).map((key) => {
-	const _ = _FUNCTIONS[key]
-	window[key] = _
-	return _
+	const func = ie(_FUNCTIONS[key])
+	window[key] = func
+	return func
 })
-console.log(FUNCTIONS)
+console.log("available functions: ", FUNCTIONS)
+
+/**
+ * @description Replaces text selection in a inputElement with another text
+ *
+ * @param {HTMLInputElement} inputElement
+ * @param {string} text
+ */
+const replaceText = (inputElement, text) => {
+	const start = inputElement.selectionStart
+	const end = inputElement.selectionEnd
+	const allText = inputElement.value
+
+	return allText.substring(0, start) + text + allText.substring(end)
+}
 
 const _STATE = {
 	inputString: "",
 	callbacks: {
 		set: {
+			/**
+			 * @param {string} newValue
+			 */
 			inputString: (oldValue, newValue) => {
 				console.log("i", newValue)
-				document.getElementById("input-display").value = newValue
-				updateOutput(newValue)
+				/** @type {HTMLInputElement} */
+				const inputDisplay = document.getElementById("input-display")
+
+				const formattedInputValue = newValue.replace(/~/g, "")
+				inputDisplay.value = formattedInputValue
+
+				// TODO select the characters between two ~
+				// if (newValue.split("~").length > 2) {
+				// 	const [first, last] = findHyphenPositions(newValue)
+				// 	// inputDisplay.setSelectionRange(first, last)
+				// }
+				updateOutput(formattedInputValue)
 			},
 		},
 	},
@@ -47,9 +88,16 @@ const STATE = new Proxy(_STATE, {
 	},
 })
 
-const createButton = (text) => {
+const createButton = ({ text, id }) => {
+	if (!text) throw new Error("Button must have text inside")
 	const button = document.createElement("button")
 	button.innerHTML = text
+	if (id) {
+		button.id = id
+	} else {
+		button.id = text
+		console.warn(`button with ${text} doesn't have an id`)
+	}
 
 	return button
 }
@@ -74,7 +122,10 @@ function addBasicButtons() {
 
 	container.append(
 		...buttons.map((buttonObj) => {
-			return createButton(buttonObj.displayText)
+			return createButton({
+				text: buttonObj.displayText,
+				id: buttonObj.displayText,
+			})
 		}),
 	)
 
@@ -86,8 +137,10 @@ function addBasicButtons() {
 		container.append(equalButton)
 	}
 
+	const inputDisplay = document.getElementById("input-display")
 	container.onclick = (event) => {
-		console.log(event)
+		const replacement = event.target.innerText
+		STATE.inputString = replaceText(inputDisplay, replacement)
 	}
 }
 
@@ -97,30 +150,37 @@ function addFunctionButtons() {
 	container.append(
 		...FUNCTIONS.map((functionObj) => {
 			const name = functionObj.meta.name
-			return createButton(name)
+			return createButton({ text: name, id: name })
 		}),
 	)
 
+	const inputDisplay = document.getElementById("input-display")
 	container.onclick = (event) => {
-		console.log("function-buttons", event)
+		const buttonId = event.target.id
+		const clickedFunction = FUNCTIONS.find((functionObj) => {
+			return functionObj.meta.name === buttonId
+		})
+		const functionUsageExample = clickedFunction.meta.usage
+		STATE.inputString = replaceText(inputDisplay, functionUsageExample)
 	}
 }
 
 document.body.onload = () => {
-	STATE.inputString = "0.2+0.1"
+	STATE.inputString = "is-prime(gcd(100,40))"
 	addFunctionButtons()
 	addBasicButtons()
 }
 
 const calculatorOutputFormatter = (value) => {
+	if (value === undefined) return ""
 	if (!(value instanceof Object)) {
 		return value
 	}
 	const _value = value.mainValue
 
 	// if array return ", " seperated
-	if (value instanceof Array) {
-		return _value.join(", ").concat(`\n[${value.length}]`)
+	if (_value instanceof Array) {
+		return _value.join(", ").concat(`\n[${_value.length}]`)
 	}
 
 	// otherwise return normal
@@ -128,10 +188,11 @@ const calculatorOutputFormatter = (value) => {
 }
 
 /**
- * @param {Event} event
+ * @param {string} newInputString
  */
 function updateOutput(newInputString) {
 	const outputDisplay = document.getElementById("output-display")
+
 	const evaluatedInput = evaluate(newInputString)
 	if (evaluatedInput instanceof Object && "error" in evaluatedInput) {
 		// it's an error
@@ -144,11 +205,11 @@ function updateOutput(newInputString) {
 		// )
 		// calculatorOutputFormatter(evaluatedInput)
 	}
-	console.log(evaluatedInput)
 }
 
-document
-	.getElementById("input-display")
-	?.addEventListener("change", (event) => {
+document.getElementById("input-display")?.addEventListener(
+	"input",
+	debounce((event) => {
 		STATE.inputString = event.target.value
-	})
+	}, 500),
+)
