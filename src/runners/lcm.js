@@ -20,7 +20,7 @@ export const lcm = memoize(
 	 * @returns {LCMResultObj}
 	 */
 	(...numbers) => {
-		if (numbers.length === 1) throw new Error("lcm: expects atleast 2 numbers")
+		if (numbers.length < 2) throw new Error("lcm: expects atleast 2 numbers")
 
 		if (numbers.length > 2) {
 			const [a, b, ...rest] = numbers

@@ -22,7 +22,7 @@ export const gcd = memoize(
 	 * @returns {GCDOutputObj}
 	 */
 	(...numbers) => {
-		if (numbers.length < 1) {
+		if (numbers.length < 2) {
 			throw new Error("gcd: requires atleast two numbers")
 		}
 		if (numbers.length > 2) {
@@ -45,6 +45,13 @@ export const gcd = memoize(
 					mainValue: a || b,
 					valueAsPrimeFactors: factorize(a || b).mainValue,
 				} // return which is not zero
+			}
+
+			if (a === 1 || b === 1) {
+				return {
+					mainValue: 1,
+					valueAsPrimeFactors: null,
+				}
 			}
 
 			// get primeFactors of the numbers
