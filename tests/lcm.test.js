@@ -26,7 +26,9 @@ describe("lcm: normal-tests", () => {
 
 	CASES.map((_) => {
 		// TODO find a suitable name
-		expect(lcm(..._.input).mainValue).toBe(_.output)
+		test(`${_.input.join(", ")}`, () => {
+			expect(lcm(..._.input).mainValue).toBe(_.output)
+		})
 	})
 })
 
@@ -45,7 +47,9 @@ describe("lcm: errors", () => {
 
 	ERROR_CASES.forEach((errorCase) => {
 		test(`lcm: [${errorCase.input.join(", ")}]`, () => {
-			expect(lcm(...errorCase.input)).toThrow(errorCase.output)
+			expect(() => {
+				lcm(...errorCase.input)
+			}).toThrow(errorCase.output)
 		})
 	})
 })

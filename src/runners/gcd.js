@@ -1,6 +1,6 @@
 import { multiply, memoize } from "../utils.js"
 import { factorize } from "./factorize.js"
-import { iSet } from "./../models/iSet.js"
+import { NumberedSet } from "./../models/NumberedSet.js"
 
 const meta = {
 	name: "gcd",
@@ -27,7 +27,7 @@ export const gcd = memoize(
 		}
 		if (numbers.length > 2) {
 			// calculate gcd of the first two numbers
-			let f2 = gcd(numbers[0], numbers[1]).value
+			let f2 = gcd(numbers[0], numbers[1]).mainValue
 
 			return gcd(f2, ...numbers.slice(2))
 		}
@@ -54,38 +54,47 @@ export const gcd = memoize(
 				}
 			}
 
+			const primeFactorsSet = numbers.map((number) => {
+				const x = factorize(number).inPrimes
+				return new NumberedSet(x)
+			})
+
 			// get primeFactors of the numbers
 			// then name every factor to do the set intersection
-			const primeFactors = numbers.map((v) => {
-				const primePowers = factorize(v).primePowers
+			// const primeFactors = numbers.map((v) => {
+			// 	const primePowers = factorize(v).primePowers
 
-				const entries = Object.keys(primePowers).map((key) => [
-					key,
-					primePowers[key],
-				])
+			// 	const entries = Object.keys(primePowers).map((key) => [
+			// 		key,
+			// 		primePowers[key],
+			// 	])
 
-				const namedFactors = []
-				entries.forEach(([powerBase, powerValue]) => {
-					for (let power_i = 0; power_i < powerValue; power_i++) {
-						namedFactors.push(`${powerBase}<${power_i}>`)
-					}
-				})
+			// 	const namedFactors = []
+			// 	entries.forEach(([powerBase, powerValue]) => {
+			// 		for (let power_i = 0; power_i < powerValue; power_i++) {
+			// 			namedFactors.push(`${powerBase}<${power_i}>`)
+			// 		}
+			// 	})
 
-				return new Set(namedFactors)
-			})
+			// 	return new Set(namedFactors)
+			// })
 
 			/**
 			 * @param {string} factorName
 			 * @exports string
 			 */
-			const removeFactorName = (factorName) => factorName.replace(/<\d+>/, "")
+			// const removeFactorName = (factorName) => factorName.replace(/<\d+>/, "")
 
-			const intersectionArray = Array.from(
-				new iSet(primeFactors[0]).intersectionWith(new iSet(primeFactors[1])),
+			const intersectionArray = primeFactorsSet[0].intersectionWith(
+				primeFactorsSet[1],
 			)
-				.map(removeFactorName)
-				.map((v) => parseInt(v))
 			if (intersectionArray.length === 0) intersectionArray.push(1)
+			// const intersectionArray = Array.from(
+			// 	new iSet(primeFactors[0]).intersectionWith(new iSet(primeFactors[1])),
+			// )
+			// 	.map(removeFactorName)
+			// 	.map((v) => parseInt(v))
+			// if (intersectionArray.length === 0) intersectionArray.push(1)
 
 			return {
 				mainValue: multiply(intersectionArray),

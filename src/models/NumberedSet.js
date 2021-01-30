@@ -1,6 +1,6 @@
 import { iSet } from "./iSet.js"
 
-class NumberedSet extends Set {
+export class NumberedSet extends Set {
 	/**
 	 * @param {Iterable} iterable
 	 */
