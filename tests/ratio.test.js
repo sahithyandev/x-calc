@@ -1,4 +1,4 @@
-import { calculateRatio as TEST_FUNCTION } from "./../src/runners/index.js"
+import { ratio as TEST_FUNCTION } from "./../src/runners/index.js"
 
 describe(`${TEST_FUNCTION.meta.name}: normal-tests`, () => {
 	const CASES = [

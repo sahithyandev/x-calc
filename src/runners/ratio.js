@@ -1,13 +1,13 @@
-import { memoize } from "./../utils.js"
+import { memoize } from "../utils.js"
 import { gcd } from "./gcd.js"
 
 const meta = {
-	name: "calculate-ratio",
+	name: "ratio",
 	description: "Calculates ratio of two or more numbers",
-	usage: "calculate-ratio(~15,5~)",
+	usage: "ratio(~15,5~)",
 }
 
-export const calculateRatio = memoize(
+export const ratio = memoize(
 	/**
 	 * @param {number[]} numbers
 	 */
@@ -27,4 +27,4 @@ export const calculateRatio = memoize(
 	},
 )
 
-calculateRatio.meta = meta
+ratio.meta = meta
