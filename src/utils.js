@@ -37,9 +37,7 @@ export const memoize = (func, keyResolver) => {
  */
 export const evaluate = (inputString) => {
 	try {
-		const _inputString = inputString.replace(/-([a-zA-Z])/, (v) =>
-			v.slice(1).toUpperCase(),
-		)
+		const _inputString = kebabToCamelCase(inputString)
 		const output = eval(_inputString)
 		// console.log(output, typeof output)
 		if (typeof output === "number")
@@ -83,4 +81,14 @@ export const findHyphenPositions = (str) => {
 		.findIndex((v) => v === "~")
 
 	return [firstHyphen, secondHyphen]
+}
+
+/**
+ * @description Converts kebab-cased-words into camelCased
+ * @example kebabToCamelCase("am-i-a-human") ---> "amIAHuman"
+ * @param {string} str
+ * @returns {string}
+ */
+export const kebabToCamelCase = (str) => {
+	return str.replace(/-([a-zA-Z])/, (v) => v.slice(1).toUpperCase())
 }

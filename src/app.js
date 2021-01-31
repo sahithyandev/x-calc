@@ -1,12 +1,5 @@
-// import { create, all } from "mathjs/number"
 import { evaluate, debounce, findHyphenPositions } from "./utils"
 import * as _FUNCTIONS from "../src/runners/index"
-import { all } from "mathjs"
-
-// const MathJs = create(all)
-// const MathParser = MathJs.parser()
-// window["MathParser"] = MathParser
-// window["MathJs"] = MathJs
 
 // TODO think of a good name
 /**
@@ -178,9 +171,9 @@ const calculatorOutputFormatter = (value) => {
 	if (!(value instanceof Object)) {
 		return value
 	}
-	const _value = value.mainValue
 
-	// if array return ", " seperated
+	const _value = value.formattedValue || value.mainValue
+
 	if (_value instanceof Array) {
 		return _value.join(", ").concat(`\n[${_value.length}]`)
 	}
@@ -201,11 +194,6 @@ function updateOutput(newInputString) {
 		outputDisplay.innerHTML = evaluatedInput.error.message
 	} else {
 		outputDisplay.innerHTML = calculatorOutputFormatter(evaluatedInput)
-		// MathJs.format(
-		// MathParser.evaluate(newInputString),
-		// 	{ precision: 14 },
-		// )
-		// calculatorOutputFormatter(evaluatedInput)
 	}
 }
 

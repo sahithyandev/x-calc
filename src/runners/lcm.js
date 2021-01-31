@@ -4,7 +4,7 @@ import { gcd } from "./gcd.js"
 const meta = {
 	name: "lcm",
 	longName: "Least Common Multiple",
-	description: "",
+	description: "Calculates the least common multiple of two or more integers",
 	usage: "lcm(~4,6~)",
 }
 

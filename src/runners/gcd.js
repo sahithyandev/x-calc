@@ -5,7 +5,7 @@ import { NumberedSet } from "./../models/NumberedSet.js"
 const meta = {
 	name: "gcd",
 	longName: "Greatest Common Divisor",
-	description: "",
+	description: "Calculates greatest common divisor of two or more integers",
 	usage: "gcd(~100,40~)",
 }
 
@@ -41,10 +41,11 @@ export const gcd = memoize(
 				}
 			}
 			if (a == 0 || b == 0) {
+				// return which is not zero
 				return {
 					mainValue: a || b,
 					valueAsPrimeFactors: factorize(a || b).mainValue,
-				} // return which is not zero
+				}
 			}
 
 			if (a === 1 || b === 1) {
@@ -59,42 +60,10 @@ export const gcd = memoize(
 				return new NumberedSet(x)
 			})
 
-			// get primeFactors of the numbers
-			// then name every factor to do the set intersection
-			// const primeFactors = numbers.map((v) => {
-			// 	const primePowers = factorize(v).primePowers
-
-			// 	const entries = Object.keys(primePowers).map((key) => [
-			// 		key,
-			// 		primePowers[key],
-			// 	])
-
-			// 	const namedFactors = []
-			// 	entries.forEach(([powerBase, powerValue]) => {
-			// 		for (let power_i = 0; power_i < powerValue; power_i++) {
-			// 			namedFactors.push(`${powerBase}<${power_i}>`)
-			// 		}
-			// 	})
-
-			// 	return new Set(namedFactors)
-			// })
-
-			/**
-			 * @param {string} factorName
-			 * @exports string
-			 */
-			// const removeFactorName = (factorName) => factorName.replace(/<\d+>/, "")
-
 			const intersectionArray = primeFactorsSet[0].intersectionWith(
 				primeFactorsSet[1],
 			)
 			if (intersectionArray.length === 0) intersectionArray.push(1)
-			// const intersectionArray = Array.from(
-			// 	new iSet(primeFactors[0]).intersectionWith(new iSet(primeFactors[1])),
-			// )
-			// 	.map(removeFactorName)
-			// 	.map((v) => parseInt(v))
-			// if (intersectionArray.length === 0) intersectionArray.push(1)
 
 			return {
 				mainValue: multiply(intersectionArray),
@@ -108,7 +77,8 @@ export const gcd = memoize(
 )
 gcd.meta = meta
 
-// console.log(gcd(10, 40), 10)
+// console.log(gcd(5, 10), 5)
+// console.log(gcd(5, 10), 10)
 // console.log(gcd(100, 40), 20)
 // console.log(gcd(100, 40, 15), 5)
 // console.log(gcd(100, 40, 32), 4)

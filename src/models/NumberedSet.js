@@ -34,7 +34,7 @@ export class NumberedSet extends Set {
 	 * @param {Iterable<string>} iterable
 	 */
 	static _decodeNamedItems(iterable) {
-		const indexRemovedItems = Array(...iterable).map((item) =>
+		const indexRemovedItems = Array.from(iterable).map((item) =>
 			item.replace(/<\d+>/, ""),
 		)
 		// check if the items are numbers or can be turned into numbers
@@ -50,7 +50,7 @@ export class NumberedSet extends Set {
 	 * @returns {Object}
 	 */
 	static _countItems(iterable) {
-		const _array = new Array(...iterable)
+		const _array = Array.from(iterable)
 		const countObj = {}
 		for (let item_i in _array) {
 			const item = _array[item_i]
