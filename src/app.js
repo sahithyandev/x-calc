@@ -1,14 +1,18 @@
-import { evaluate, debounce, findHyphenPositions } from "./utils"
+import { evaluate, debounce, isLocal } from "./utils"
 import * as _FUNCTIONS from "../src/runners/index"
 
-// TODO think of a good name
+// TODO think of a good name for ie
 /**
  * @description Normally, those runner functions return an object. This function creates a new instance of those runners which return only thier mainValue
  * @param {Function} runner
  */
 const ie = (runner) => {
 	const x = function (...args) {
-		return runner.apply(null, args).mainValue
+		const output = runner.apply(null, args)
+		if (typeof output.mainValue === "number") return output.mainValue
+		// if (output.formattedValue) return output.formattedValue
+		return output
+		// return runner.apply(null, args) // TODO .mainValue
 	}
 	x.meta = runner.meta
 	return x
@@ -43,7 +47,6 @@ const _STATE = {
 			 * @param {string} newValue
 			 */
 			inputString: (oldValue, newValue) => {
-				console.log("i", newValue)
 				/** @type {HTMLInputElement} */
 				const inputDisplay = document.getElementById("input-display")
 
@@ -159,8 +162,8 @@ function addFunctionButtons() {
 }
 
 document.body.onload = () => {
-	if (location.hostname === "localhost") {
-		STATE.inputString = "is-prime(gcd(100,40))"
+	if (isLocal()) {
+		STATE.inputString = "factors(100)"
 	}
 	addFunctionButtons()
 	addBasicButtons()
@@ -171,6 +174,7 @@ const calculatorOutputFormatter = (value) => {
 	if (!(value instanceof Object)) {
 		return value
 	}
+	console.log(value)
 
 	const _value = value.formattedValue || value.mainValue
 

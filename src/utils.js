@@ -39,7 +39,6 @@ export const evaluate = (inputString) => {
 	try {
 		const _inputString = kebabToCamelCase(inputString)
 		const output = eval(_inputString)
-		// console.log(output, typeof output)
 		if (typeof output === "number")
 			return output.toPrecision(10).replace(/\.?0+$/g, "")
 		return output
@@ -91,4 +90,17 @@ export const findHyphenPositions = (str) => {
  */
 export const kebabToCamelCase = (str) => {
 	return str.replace(/-([a-zA-Z])/, (v) => v.slice(1).toUpperCase())
+}
+
+/**
+ * @description Checks if the website is running local or not
+ */
+export const isLocal = () => location.hostname === "localhost"
+
+export const myLog = (...msg) => {
+	if (isLocal()) {
+		console.log(...msg)
+	} else {
+		console.log("Logging is turned off here")
+	}
 }

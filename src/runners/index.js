@@ -1,5 +1,7 @@
 export { isPrime } from "./is-prime"
-export { factorize } from "./factorize"
+// export { factorize } from "./factorize"
+export { factors } from "./factors"
+export { primeFactorize } from "./prime-factorize"
 export { gcd } from "./gcd"
 export { lcm } from "./lcm"
 export { calculateRatio } from "./calculate-ratio"

@@ -5,7 +5,7 @@ describe(`${TEST_FUNCTION.meta.name}: primes`, () => {
 	for (let i = 0; i < PRIMES.length - 1; i++) {
 		const [primeNum1, primeNum2] = [PRIMES[i], PRIMES[i + 1]]
 		test(`(${primeNum1}, ${primeNum2})`, () => {
-			const { mainValue } = gcd(primeNum1, primeNum2)
+			const { mainValue } = TEST_FUNCTION(primeNum1, primeNum2)
 
 			expect(mainValue).toBe(1)
 		})

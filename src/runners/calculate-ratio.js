@@ -14,12 +14,11 @@ export const calculateRatio = memoize(
 	(...numbers) => {
 		//
 		const reducer = gcd(...numbers).mainValue
-		console.log(numbers, { reducer })
 		const reducedNumbers = numbers.map((number) => number / reducer)
 
 		return {
 			mainValue: reducedNumbers,
-			formatted: reducedNumbers.join(" : "),
+			formattedValue: reducedNumbers.join(" : "),
 			reducer,
 		}
 	},

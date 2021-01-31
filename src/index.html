@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>X-Calc</title>
+		<title>X-Calc - 0.0.1</title>
 		<link rel="stylesheet" href="./style/main.css" />
 		<link rel="manifest" href="./manifest.webmanifest" data-parceljs-ignore />
 		<!-- TODO add favicon -->
@@ -15,12 +15,7 @@
 				<div id="output-display"></div>
 			</div>
 			<div id="buttons-container">
-				<div id="basic-buttons">
-					<!-- <button id="add" data-button-type="basic">+</button>
-						<button id="add" data-button-type="basic">+</button>
-						<button id="add" data-button-type="basic">+</button>
-						<button id="add" data-button-type="basic">+</button> -->
-				</div>
+				<div id="basic-buttons"></div>
 				<div id="function-buttons"></div>
 			</div>
 		</div>
@@ -34,6 +29,7 @@
 							console.log("service worker registered", v)
 						})
 						.catch((err) => {
+							alert("S0me 3rr0r 0cc|_|red.")
 							console.warn("err", err)
 						})
 				})

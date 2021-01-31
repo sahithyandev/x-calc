@@ -1,7 +1,8 @@
-import { factorize } from "../src/runners/factorize"
+import { factors as TEST_FUNCTION } from "../src/runners/factors"
 
 import { PRIMES } from "./NUMBERS"
-describe("factorize: primes", () => {
+
+describe(`${TEST_FUNCTION.meta.name}: primes`, () => {
 	PRIMES.forEach((prime) => {
 		test(`${prime}`, () => {
 			const {
@@ -9,7 +10,7 @@ describe("factorize: primes", () => {
 				inPrimes,
 				primeFactors,
 				primePowers,
-			} = factorize(prime)
+			} = TEST_FUNCTION(prime)
 			expect(factors).toStrictEqual([1, prime])
 			expect(inPrimes).toStrictEqual([prime])
 			expect(primeFactors).toStrictEqual([prime])
@@ -67,10 +68,10 @@ const NON_PRIMES = {
 	},
 }
 
-describe("factorize: non-primes", () => {
+describe(`${TEST_FUNCTION.meta.name}: non-primes`, () => {
 	Object.keys(NON_PRIMES).forEach((number) => {
 		test(`${number}`, () => {
-			const result = factorize(number)
+			const result = TEST_FUNCTION(number)
 			expect(result).toStrictEqual(NON_PRIMES[number])
 		})
 	})
