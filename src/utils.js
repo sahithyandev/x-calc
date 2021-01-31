@@ -5,6 +5,11 @@
  * @returns {number}
  */
 export const multiply = (numbers) => {
+	if (!(numbers instanceof Array)) {
+		return new Error(
+			`multiply: expects an array of numbers (but got ${typeof numbers})`,
+		)
+	}
 	const isAllNumbers = numbers.every((number) => typeof number === "number")
 	if (!isAllNumbers) throw new Error("Only numbers can be multiplied")
 	return numbers.reduce((prev, current) => prev * current)

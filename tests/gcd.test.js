@@ -1,4 +1,5 @@
 import { gcd as TEST_FUNCTION } from "../src/runners/index"
+import { multiply } from "./../src/utils"
 import { PRIMES } from "./NUMBERS"
 
 describe(`${TEST_FUNCTION.meta.name}: primes`, () => {
@@ -33,7 +34,10 @@ describe(`${TEST_FUNCTION}: normal-tests`, () => {
 	CASES.map((_) => {
 		// TODO find a suitable name for _
 		test(`${TEST_FUNCTION.meta.name}: ${_.input}`, () => {
-			expect(TEST_FUNCTION(..._.input).mainValue).toBe(_.output)
+			const output = TEST_FUNCTION(..._.input)
+			expect(output.mainValue).toBe(_.output)
+
+			expect(multiply(output.valueAsPrimeFactors)).toBe(_.output)
 		})
 	})
 })

@@ -49,13 +49,6 @@ export const gcd = memoize(
 				}
 			}
 
-			if (a === 1 || b === 1) {
-				return {
-					mainValue: 1,
-					valueAsPrimeFactors: null,
-				}
-			}
-
 			const primeFactorsSet = numbers.map((number) => {
 				const x = primeFactorize(number).mainValue
 				return new NumberedSet(x)
