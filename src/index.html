@@ -1,23 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
+		<title>X-Calc</title>
+
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta
 			name="description"
 			content="A calculator which has functions that a normal calculator doesn't"
 		/>
-
-		<title>X-Calc - 0.0.1</title>
+		<meta name="theme-color" content="#31AE63" />
 
 		<link rel="stylesheet" href="./style/main.css" />
 		<link rel="manifest" href="./manifest.webmanifest" data-parceljs-ignore />
 		<!-- TODO add favicon -->
 	</head>
 	<body>
+		<noscript> JavaScript is required to run this calculator. </noscript>
 		<div class="wrapper">
 			<div id="display">
-				<input type="text" id="input-display" autofocus />
+				<input
+					type="text"
+					id="input-display"
+					placeholder="Type here"
+					autofocus
+				/>
 				<div id="output-display"></div>
 			</div>
 			<div id="buttons-container">

@@ -28,6 +28,10 @@ body {
           align-items: center;
 }
 
+.wrapper {
+  height: 100%;
+}
+
 @media (min-width: 600px) {
   .wrapper {
     min-width: 480px;
@@ -81,6 +85,7 @@ button:focus {
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
+  width: 100%;
   min-height: 40px;
   overflow-wrap: normal;
 }
