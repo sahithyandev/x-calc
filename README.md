@@ -11,9 +11,6 @@ These are the functionalities that I planned to build. I have to mention that th
 - Factorization of a number
 - Ratio calculation.
 - Greatest Common Factor and Least Common Divisor calculation.
-- [not-sure-if-achievable] Solving multi-variable equations
-- [not-sure-if-achievable] Limits
-- [maybe] Matrix addition and multiplication
 
 ## You got ideas?
 
