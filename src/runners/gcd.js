@@ -1,5 +1,6 @@
 import { multiply, memoize } from "../utils.js"
-import { factorize } from "./factorize.js"
+// import { factorize } from "./_factorize.js"
+import { primeFactorize } from "./prime-factorize.js"
 import { NumberedSet } from "./../models/NumberedSet.js"
 
 const meta = {
@@ -37,14 +38,14 @@ export const gcd = memoize(
 			if (a == b) {
 				return {
 					mainValue: a,
-					valueAsPrimeFactors: factorize(a).mainValue,
+					valueAsPrimeFactors: primeFactorize(a).mainValue,
 				}
 			}
 			if (a == 0 || b == 0) {
 				// return which is not zero
 				return {
 					mainValue: a || b,
-					valueAsPrimeFactors: factorize(a || b).mainValue,
+					valueAsPrimeFactors: primeFactorize(a || b).mainValue,
 				}
 			}
 
@@ -56,7 +57,7 @@ export const gcd = memoize(
 			}
 
 			const primeFactorsSet = numbers.map((number) => {
-				const x = factorize(number).inPrimes
+				const x = primeFactorize(number).mainValue
 				return new NumberedSet(x)
 			})
 

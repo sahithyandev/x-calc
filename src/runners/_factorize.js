@@ -1,3 +1,9 @@
+/**
+ * IMPORTANT
+ * this runner is obselete now.
+ * This runner is divided into two different runners: "factors" and "prime-factorize"
+ */
+
 import { multiply, memoize } from "../utils.js"
 import { isPrime } from "./is-prime.js"
 
