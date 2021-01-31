@@ -163,7 +163,7 @@ function addFunctionButtons() {
 
 document.body.onload = () => {
 	if (isLocal()) {
-		STATE.inputString = "factors(100)"
+		// STATE.inputString = "factors(100)"
 	}
 	addFunctionButtons()
 	addBasicButtons()

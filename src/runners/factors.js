@@ -1,5 +1,4 @@
 import { multiply, memoize } from "../utils.js"
-import { isPrime } from "./is-prime.js"
 import { primeFactorize } from "./prime-factorize.js"
 
 const meta = {
