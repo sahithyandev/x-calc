@@ -1,9 +1,10 @@
-const CACHE_NAME = "x-calc-v1"
+const DEPLOY_ID = 1
+const CACHE_NAME = `x-calc-cache-v${DEPLOY_ID}`
 
 self.addEventListener("install", (event) => {
 	event.waitUntil(
 		caches.open(CACHE_NAME).then((cache) => {
-			console.log("Cache opened")
+			console.log(`Cache opened: ${cache}`)
 		}),
 	)
 })
