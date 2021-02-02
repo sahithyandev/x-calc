@@ -1,5 +1,5 @@
 {
-	"name": "x-calc",
+	"name": "xcalc",
 	"version": "1.0.0",
 	"description": "An extended calculator which provides the functionalities that most of the pre-installed calculators miss.",
 	"main": "index.js",

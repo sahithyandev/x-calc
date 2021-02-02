@@ -1,5 +1,5 @@
 const DEPLOY_ID = 1
-const CACHE_NAME = `x-calc-cache-v${DEPLOY_ID}`
+const CACHE_NAME = `xcalc-cache-v${DEPLOY_ID}`
 
 self.addEventListener("install", (event) => {
 	event.waitUntil(
@@ -22,6 +22,9 @@ self.addEventListener("activate", (event) => {
 })
 
 self.addEventListener("fetch", (event) => {
+	if (event.request.method != "GET") return
+	// if (new URL(event.request.url).pathname === "/manifest.webmanifest") return
+
 	event.respondWith(
 		caches.match(event.request).then((response) => {
 			if (response) return response

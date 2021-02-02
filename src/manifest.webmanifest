@@ -1,16 +1,19 @@
 {
-	"name": "X-Calc",
-	"short_name": "X-Calc: Extended Calculator",
+	"name": "XCalc",
+	"short_name": "XCalc: Extended Calculator",
 	"description": "A calculator which has functions that a normal calculator doesn't",
 	"background_color": "#414141",
 	"theme_color": "#31AE63",
 	"display": "standalone",
-	"shortcuts": [
+	"start_url": "/",
+	"icons": [
 		{
-			"name": "How's weather today?",
-			"short_name": "Today",
-			"description": "View weather information for today",
-			"url": "/"
+			"src": "./xcalc-logo-512.png",
+			"sizes": "512x512"
+		},
+		{
+			"src": "./xcalc-logo-192.png",
+			"sizes": "192x192"
 		}
 	]
 }
