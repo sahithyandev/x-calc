@@ -1,6 +1,6 @@
 {
-	"name": "XCalc",
-	"short_name": "XCalc: Extended Calculator",
+	"name": "XCalc: Extended Calculator",
+	"short_name": "XCalc",
 	"description": "A calculator which has functions that a normal calculator doesn't",
 	"background_color": "#414141",
 	"theme_color": "#31AE63",
