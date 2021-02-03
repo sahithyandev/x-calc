@@ -95,6 +95,14 @@ button {
 	#basic-buttons {
 		margin-bottom: 32px;
 
+		#CLEAR {
+			--width: 80px;
+			width: var(--width);
+			margin-right: calc(100% - var(--width));
+			font-size: 0.8em;
+			// margin-right: auto;
+		}
+
 		#equal-button {
 			margin-left: auto;
 		}
@@ -115,5 +123,12 @@ button {
 		font-size: 0.9rem;
 		font-family: "Roboto", sans-serif;
 		font-weight: 500;
+	}
+}
+
+#function-buttons.detailed {
+	display: flex;
+	flex-direction: column;
+	button {
 	}
 }
