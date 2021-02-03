@@ -1,3 +1,4 @@
+/* eslint-disable no-debugger */
 import { evaluate, debounce, isLocal } from "./utils"
 import * as _FUNCTIONS from "../src/runners/index"
 
@@ -41,6 +42,7 @@ const replaceText = (inputElement, text) => {
 
 const _STATE = {
 	inputString: "",
+	functionsDetailedView: null,
 	callbacks: {
 		set: {
 			/**
@@ -59,6 +61,13 @@ const _STATE = {
 				// 	// inputDisplay.setSelectionRange(first, last)
 				// }
 				updateOutput(formattedInputValue)
+			},
+			/**
+			 * @param {boolean} oldValue
+			 * @param {boolean} newValue
+			 */
+			functionsDetailedView: (oldValue, newValue) => {
+				document.getElementById("function-buttons").classList.toggle("detailed")
 			},
 		},
 	},
@@ -84,8 +93,10 @@ const STATE = new Proxy(_STATE, {
 	},
 })
 
-const createButton = ({ text, id }) => {
+const createButton = ({ text, id, description, clickListener }) => {
 	if (!text) throw new Error("Button must have text inside")
+	description = description || ""
+
 	const button = document.createElement("button")
 	button.innerHTML = text
 	if (id) {
@@ -94,6 +105,10 @@ const createButton = ({ text, id }) => {
 		button.id = text
 		console.warn(`button with ${text} doesn't have an id`)
 	}
+	button.dataset.description = description
+	if (clickListener) {
+		button.onclick = clickListener
+	}
 
 	return button
 }
@@ -101,6 +116,18 @@ const createButton = ({ text, id }) => {
 function addBasicButtons() {
 	const container = document.querySelector("#basic-buttons")
 	const buttons = [
+		{
+			name: "clear",
+			displayText: "CLEAR",
+			/**
+			 * @param {MouseEvent} event
+			 */
+			onpress: (event) => {
+				console.log(event)
+				event.stopPropagation()
+				STATE.inputString = ""
+			},
+		},
 		{ name: "add", displayText: "+" },
 		{
 			name: "subtract",
@@ -121,6 +148,7 @@ function addBasicButtons() {
 			return createButton({
 				text: buttonObj.displayText,
 				id: buttonObj.displayText,
+				clickListener: buttonObj.onpress,
 			})
 		}),
 	)
@@ -165,6 +193,7 @@ document.body.onload = () => {
 	if (isLocal()) {
 		// STATE.inputString = "factors(100)"
 	}
+	// STATE.functionsDetailedView = true
 	addFunctionButtons()
 	addBasicButtons()
 }
