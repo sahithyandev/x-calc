@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<!-- META -->
+		<title>XCalc</title>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta
+			name="description"
+			content="A calculator which has functions that a normal calculator doesn't"
+		/>
+		<meta name="theme-color" content="#31AE63" />
+		<!-- INTERNAL RESOURCES -->
+		<link rel="stylesheet" href="./style/main.css" />
+		<link rel="manifest" href="./manifest.webmanifest" data-parceljs-ignore />
+		<link
+			rel="shortcut icon"
+			href="./xcalc-logo-favicon.png"
+			type="image/png"
+		/>
+		<!-- EXTERNAL RESOURCES -->
+		<link rel="preconnect" href="https://fonts.gstatic.com" />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;600&family=Roboto:wght@400;500&display=swap"
+			rel="stylesheet"
+		/>
+	</head>
+	<body>
+		<noscript> JavaScript is required to run this calculator. </noscript>
+		<div class="wrapper">
+			<div id="display">
+				<input
+					type="text"
+					id="input-display"
+					placeholder="Type here"
+					autofocus
+				/>
+				<div id="output-display"></div>
+			</div>
+			<div id="buttons-container">
+				<div id="basic-buttons"></div>
+				<div id="function-buttons"></div>
+			</div>
+		</div>
+
+		<script>
+			if ("serviceWorker" in navigator) {
+				window.addEventListener("load", () => {
+					navigator.serviceWorker
+						.register("./service-worker.js")
+						.then((v) => {
+							console.log("service worker registered", v)
+						})
+						.catch((err) => {
+							alert("S0me 3rr0r 0cc|_|red.")
+							console.warn("err", err)
+						})
+				})
+			} else {
+				console.warn("serviceworker not available")
+			}
+		</script>
+
+		<script src="./app.js"></script>
+	</body>
+</html>

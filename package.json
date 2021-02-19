@@ -1,0 +1,35 @@
+{
+	"name": "xcalc",
+	"version": "1.0.0",
+	"description": "An extended calculator which provides the functionalities that most of the pre-installed calculators miss.",
+	"main": "index.js",
+	"type": "module",
+	"scripts": {
+		"build": "parcel build src/index.html",
+		"start": "PORT=3000 parcel src/index.html",
+		"lint": "eslint .",
+		"test": "NODE_OPTIONS=--experimental-vm-modules jest"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/sahithyandev/x-calc.git"
+	},
+	"author": {
+		"email": "sahithyan2701@gmail.com",
+		"name": "Sahithyan"
+	},
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/sahithyandev/x-calc/issues"
+	},
+	"homepage": "https://github.com/sahithyandev/x-calc#readme",
+	"dependencies": {
+		"mathjs": "^9.0.0"
+	},
+	"devDependencies": {
+		"eslint": "^7.18.0",
+		"jest": "^26.6.3",
+		"parcel-bundler": "^1.12.4",
+		"prettier": "^2.2.1"
+	}
+}

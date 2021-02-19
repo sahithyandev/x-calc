@@ -1,0 +1,134 @@
+@mixin desktop {
+	@media (min-width: 600px) {
+		@content;
+	}
+}
+
+:root {
+	font-size: 20px;
+	--background-color: #414141;
+	--theme-color: #31ae63;
+	--text-color: white;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	height: 100vh;
+	background-color: var(--background-color);
+	padding: 12px;
+	margin: 0;
+	color: var(--text-color);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.wrapper {
+	@include desktop {
+		min-width: 480px;
+	}
+	height: 100%;
+	// background-color: red;
+}
+
+button {
+	cursor: pointer;
+	&:focus {
+		outline: none;
+		// TODO add press effect
+		// filter: brightness(80%);
+	}
+}
+
+#display {
+	margin: 20px 0;
+	margin-bottom: 40px;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	font-family: "Roboto Mono", monospace;
+	text-align: right;
+
+	max-width: 520px;
+
+	#input-display {
+		font-family: inherit;
+		font-size: 1.1rem;
+		font-weight: 600;
+		color: white;
+		text-align: right;
+
+		background: none;
+		border: none;
+		width: 100%;
+		// border: 1px solid black;
+
+		&:focus {
+			outline: none;
+		}
+	}
+
+	#output-display {
+		margin-top: 10px;
+		opacity: 0.6;
+		height: fit-content;
+		width: 100%;
+		min-height: 40px;
+		overflow-wrap: normal;
+	}
+}
+
+#buttons-container {
+	& > div {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		gap: 12px;
+		height: auto;
+	}
+
+	// min-width: 360px;
+	max-width: 450px;
+	#basic-buttons {
+		margin-bottom: 32px;
+
+		#CLEAR {
+			--width: 80px;
+			width: var(--width);
+			margin-right: calc(100% - var(--width));
+			font-size: 0.8em;
+			// margin-right: auto;
+		}
+
+		#equal-button {
+			margin-left: auto;
+		}
+	}
+
+	button {
+		--background-color: #6d6d6d;
+		--text-color: white;
+
+		background-color: var(--background-color);
+		color: var(--text-color);
+		border: none;
+		border-radius: 4px;
+
+		padding: 8px 12px;
+		min-width: 45px;
+
+		font-size: 0.9rem;
+		font-family: "Roboto", sans-serif;
+		font-weight: 500;
+	}
+}
+
+#function-buttons.detailed {
+	display: flex;
+	flex-direction: column;
+	button {
+	}
+}

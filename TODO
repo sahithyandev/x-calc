@@ -1,0 +1,11 @@
+- [IMPORTANT] Migrate normal buttons to web component based
+
+- [not-sure] Add is-divisible runner
+- Add an info button
+
+- Decide if robotos.txt is needed
+- Try to go without parcel
+- Design logo
+	- Add logo to manifest
+	- Provide a valid apple-touch-icon
+- Move calculations out of main thread

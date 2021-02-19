@@ -1,0 +1,17 @@
+name: Test (Jest)
+
+on: [push, pull_request]
+
+jobs:
+  jest:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install npm modules
+        run: npm install
+
+      - name: Run jest
+        run: npm run test
+
